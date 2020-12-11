@@ -20,5 +20,13 @@
             </div>
         </div>
     </div>
+    @forelse($items as $item)
+        <div>
+            <p>{{ $item->name }}</p>
+
+            <p>{{ $item->shop_id }}</p>
+        </div>
+    @empty
+    @endforelse
 </div>
 @endsection
