@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  web:
+    build:
+      context: ./build/web
+    depends_on:
+      - php
+    ports:
+      - "80:80"
+
+  php: 
+    build:
+      context: ./build/php
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ALLOW_ENPTY_PASSWORD: "yes"
+      MYSQL_ROOT_PASSWORD: "password"
+

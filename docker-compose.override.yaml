@@ -1,0 +1,8 @@
+version: "3.8"
+services:
+  web:
+    volumes:
+      - ./src/public:/var/www/html/public
+  php:
+    volumes:
+      - ./src:/var/www/html
