@@ -1,31 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+<div class="container my-12 mx-auto px-4 md:px-12">
+    <div class="flex flex-wrap -mx-1 lg:-mx-4">
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-
-                </div>
-            </div>
-        </div>
-    </div>
-    @forelse($items as $item)
+        @forelse($items as $item)
         <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-            <a href="{{ route('itemShow', [1]) }}" class="overflow-hidden rounded-lg shadow-lg">
-                <div>
+            <article class="overflow-hidden rounded-lg shadow-lg">
+
+                <a href={{ route('itemShow', [$item->id]) }}>
+
                     <img alt="Placeholder" class="block h-auto w-full" src="https://picsum.photos/600/400/?random">
-                </div>
+                </a>
 
                 <header class="flex items-center justify-between leading-tight p-2 md:p-4">
                     <h1 class="text-lg">
@@ -34,7 +20,7 @@
                         </a>
                     </h1>
                     <p class="text-grey-darker text-sm">
-                        14/4/19
+                        {{ $item->price }}
                     </p>
                 </header>
 
@@ -42,7 +28,7 @@
                     <a class="flex items-center no-underline hover:underline text-black" href="#">
                         <img alt="Placeholder" class="block rounded-full" src="https://picsum.photos/32/32/?random">
                         <p class="ml-2 text-sm">
-                            {{ $item->shop_id }}
+                            {{ $item->shopName }}
                         </p>
                     </a>
                     <a class="no-underline text-grey-darker hover:text-red-dark" href="#">
@@ -51,9 +37,10 @@
                     </a>
                 </footer>
 
-            </a>
+            </article>
         </div>
-    @empty
-    @endforelse
+        @empty
+        @endforelse
+    </div>
 </div>
 @endsection
